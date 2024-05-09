@@ -1,6 +1,6 @@
 import customtkinter
 
-from gui.inventory_tab import FrameTabInventory
+from ui.inventory_tab import FrameTabInventory
 
 
 #Clase con 4 pestañas
