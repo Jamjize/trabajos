@@ -49,7 +49,7 @@ class FrameInventoryTab(customtkinter.CTkFrame):
 
         self.label_enrty_input = LabelEnrtyInput(master=self)
         self.buttons_frame = ButtonsFrame(master=self, label_entry=self.label_enrty_input)
-        self.table = MyTable(master=self, row=1, column=2, values=[["Leo", "Pucheta"]])
+        self.table = MyTable(master=self, row=2, column=2, values=[["Ingrediente", "Cantidad"]])
 
         #Aca donde colocamos la cosas
         self.label_description.grid(row=0, column=0, columnspan=3, sticky="ew")
