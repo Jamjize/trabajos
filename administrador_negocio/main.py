@@ -16,7 +16,18 @@ class App(customtkinter.CTk):
             entry_width=250, 
             #num_components=1
         )
-        self.label_entry.grid(row=0, column=0) 
+        self.label_entry2 = LabelEntryFrame(
+            master=self, 
+            text="Adios", 
+            font_style=(Font.BASE.value, Size.DEFAULT.value), 
+            alignment="w", 
+            entry_width=300, 
+            #num_components=1
+        )
+        self.label_entry3 = LabelEntryFrame(self)
+        self.label_entry.grid(row=0, column=0)
+        self.label_entry2.grid(row=0, column=1)
+        self.label_entry3.grid(row=0, column=2)
 
 
 app = App()
