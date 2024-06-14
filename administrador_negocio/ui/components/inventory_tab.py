@@ -1,6 +1,7 @@
 import customtkinter
 from ui.components.my_table import MyTable
 
+#Se pide ingrediente y cantidad
 class LabelEnrtyInput(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
