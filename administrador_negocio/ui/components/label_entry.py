@@ -9,24 +9,39 @@ TODO: que pedir si se crean vertical u horizontal hacelo.
 
 class LabelEntryFrame(customtkinter.CTkFrame):
     def __init__(
-            self, 
-            master,
-            text: str="papaya",
-            font_style: tuple=(Font.DEFAULT.value, Size.DEFAULT.value),
-            alignment: str="e",
-            entry_width: int=100,
-            #num_components: int=1
-        ):
+        self, 
+        master,
+        widget_parameters_list: list=[[
+            "text", 
+            (Font.DEFAULT.value, Size.DEFAULT.value), 
+            "center", 
+            100,
+        ]],
+        orientation = "horiz",
+        padx: int = 10,
+        pady: int = 10
+    ):
         super().__init__(master)
+        self.widget_count: list = []
+        self.orientation = orientation
+        self.padx = padx
+        self.pady = pady
 
-        #Widgets
-        self.label = customtkinter.CTkLabel(
-            master=self,
-            text=text,
-            font=font_style,
-            anchor=alignment
-        )
-        self.label.grid(row=0, column=0)
-
-        self.entry = customtkinter.CTkEntry(master=self, width=entry_width)
-        self.entry.grid(row=1, column=0)
+        # --Creacion widgets--
+        #* -parameters- es una lista[] con los parametros para el widget
+        for i, parameters in enumerate(widget_parameters_list):
+            self.label = customtkinter.CTkLabel(
+                master=self,
+                text=parameters[0],
+                font=parameters[1],
+                anchor=parameters[2]
+            )
+            self.entry = customtkinter.CTkEntry(master=self, width=parameters[3])
+            # Acomodando widgets dentro del frame
+            if self.orientation == "horiz":
+                self.label.grid(row=0, column=i, padx=self.padx)
+                self.entry.grid(row=1, column=i, padx=self.padx)
+            else:
+                self.label.grid(row=2*i+1, column=0, pady=(self.pady, 0))
+                self.entry.grid(row=2*i+2, column=0, pady=(0, self.pady))
+            self.widget_count.append((self.label, self.entry))
