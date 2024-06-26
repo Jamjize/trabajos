@@ -1,7 +1,9 @@
 import sqlite3
 
+db_file = 'DB/productos.db'
+
 def crear_tabla_productos():
-    conn = sqlite3.connect('productos.db')
+    conn = sqlite3.connect(database=db_file)
     cursor = conn.cursor()
     cursor.execute('''CREATE TABLE IF NOT EXISTS productos (
                         nombre TEXT,
@@ -12,28 +14,29 @@ def crear_tabla_productos():
     conn.close()
 
 def insertar_producto(nombre, cantidad, unidad):
-    conn = sqlite3.connect('productos.db')
+    conn = sqlite3.connect(database=db_file)
     cursor = conn.cursor()
     cursor.execute('INSERT INTO productos VALUES (?,?,?)', (nombre, cantidad, unidad))
     conn.commit()
     conn.close()
 
 def leer_productos():
-    conn = sqlite3.connect('productos.db')
+    conn = sqlite3.connect(database=db_file)
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM productos")
     rows = cursor.fetchall()
     conn.close()
     return rows
 
-# Crear la tabla si no existe
-crear_tabla_productos()
 
-# Insertar valores de ejemplo
-insertar_producto("pizza", 30, "u")
-insertar_producto("Manaos cola", 20, "Ltrs")
+def main():
+    # Crear la tabla si no existe
+    crear_tabla_productos()
 
 # Leer y mostrar los datos
 productos = leer_productos()
 for producto in productos:
     print(producto)
+
+if __name__=='__main__':
+    main()
